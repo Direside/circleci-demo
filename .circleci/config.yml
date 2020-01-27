@@ -6,9 +6,19 @@ jobs:
       - image: circleci/python:3.8
     steps:
       - run:
-          command: echo "test"
+          command: echo "test" > test.txt
+      - run:
+          command: cat test.txt
+
+  my_second_job:
+    docker:
+      - image: circleci/python:3.8
+    steps:
+      - run:
+          command: cat test.txt
 
 workflows:
   test_workflow:
     jobs:
       - my_first_job
+      - my_second_job
